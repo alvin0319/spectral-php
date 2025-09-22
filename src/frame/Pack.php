@@ -43,13 +43,10 @@ final class Pack
             return null;
         }
 
-//        $connectionID = $buf->readSignedLongLE();
-//        $sequenceID = $buf->readUnsignedIntLE();
 		$connectionID = LE::readSignedLong($buf);
 		$sequenceID = LE::readSignedLong($buf);
         $frames = [];
-		$len = strlen($payload);
-        while ($len - $buf->getUnreadLength() > $buf->getOffset()) {
+        while ($buf->getUnreadLength() > 0) {
             $fr = Pool::getFrame(LE::readUnsignedInt($buf));
             if ($fr === null) {
                 break;

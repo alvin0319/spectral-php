@@ -38,6 +38,7 @@ final class ConnectionClose extends Frame
 //        $buf->writeUnsignedByte($this->code);
 //        $buf->writeUnsignedIntLE(strlen($this->message));
 		Byte::writeUnsigned($buf, $this->code);
+		LE::writeUnsignedInt($buf, strlen($this->message));
         $buf->writeByteArray($this->message);
     }
 
