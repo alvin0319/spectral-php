@@ -44,7 +44,7 @@ final class Pack
         }
 
 		$connectionID = LE::readSignedLong($buf);
-		$sequenceID = LE::readSignedLong($buf);
+		$sequenceID = LE::readUnsignedInt($buf);
         $frames = [];
         while ($buf->getUnreadLength() > 0) {
             $fr = Pool::getFrame(LE::readUnsignedInt($buf));
